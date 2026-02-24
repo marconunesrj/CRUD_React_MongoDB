@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "9982b9b9-6148-4e04-b499-0489f8de9fe2",
+    "name": "Teste CRUD Javascript MongoDB",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32698087"
+  },
+  "item": [
+    {
+      "name": "Listar usuários (paginado)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/users?page=1&limit=10&role=admin&active=true",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "role",
+              "value": "admin"
+            },
+            {
+              "key": "active",
+              "value": "true",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar usuário por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/users/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "699dcb9c075eb9c3f64a5785"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar novo usuário",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"João Silva\",\r\n  \"email\": \"joao@empresa.com\",\r\n  \"role\": \"editor\",\r\n  \"active\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/users",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar usuário",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"João Silva New\",\r\n  \"email\": \"joao@empresa.com\",\r\n  \"role\": \"editor\",\r\n  \"active\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/users/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "699dcd59075eb9c3f64a5796"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Excluir usuário",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/users/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "699dcd59075eb9c3f64a5796"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
