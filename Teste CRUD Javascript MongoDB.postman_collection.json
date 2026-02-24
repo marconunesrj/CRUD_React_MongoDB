@@ -7,152 +7,292 @@
   },
   "item": [
     {
-      "name": "Listar usuários (paginado)",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/users?page=1&limit=10&role=admin&active=true",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "api",
-            "users"
-          ],
-          "query": [
-            {
-              "key": "page",
-              "value": "1"
-            },
-            {
-              "key": "limit",
-              "value": "10"
-            },
-            {
-              "key": "role",
-              "value": "admin"
-            },
-            {
-              "key": "active",
-              "value": "true",
-              "type": "text"
+      "name": "Pets",
+      "item": [
+        {
+          "name": "Listar pets (paginado)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{pet_router}}",
+              "host": [
+                "{{base_url}}{{pet_router}}"
+              ]
             }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Buscar usuário por ID",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/users/:id",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "api",
-            "users",
-            ":id"
-          ],
-          "variable": [
-            {
-              "key": "id",
-              "value": "699dcb9c075eb9c3f64a5785"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Criar novo usuário",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"name\": \"João Silva\",\r\n  \"email\": \"joao@empresa.com\",\r\n  \"role\": \"editor\",\r\n  \"active\": true\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          },
+          "response": []
         },
-        "url": {
-          "raw": "{{base_url}}/api/users",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "api",
-            "users"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Atualizar usuário",
-      "request": {
-        "method": "PUT",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"name\": \"João Silva New\",\r\n  \"email\": \"joao@empresa.com\",\r\n  \"role\": \"editor\",\r\n  \"active\": false\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
+        {
+          "name": "Listar pets de um usuário específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{pet_router}}/user/:user_id",
+              "host": [
+                "{{base_url}}{{pet_router}}"
+              ],
+              "path": [
+                "user",
+                ":user_id"
+              ],
+              "variable": [
+                {
+                  "key": "user_id",
+                  "value": "699dcb9c075eb9c3f64a5785"
+                }
+              ]
             }
-          }
+          },
+          "response": []
         },
-        "url": {
-          "raw": "{{base_url}}/api/users/:id",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "api",
-            "users",
-            ":id"
-          ],
-          "variable": [
-            {
-              "key": "id",
-              "value": "699dcd59075eb9c3f64a5796"
+        {
+          "name": "Buscar pet por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{pet_router}}/:id",
+              "host": [
+                "{{base_url}}{{pet_router}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
             }
-          ]
+          },
+          "response": []
+        },
+        {
+          "name": "Criar novo pet",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"user_id\": \"699dce1f075eb9c3f64a57a2\",\r\n  \"name\": \"Madmax\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{pet_router}}",
+              "host": [
+                "{{base_url}}{{pet_router}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar pet",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"user_id\": \"699dcb9c075eb9c3f64a5785\",\r\n  \"name\": \"Armani\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{pet_router}}/:id",
+              "host": [
+                "{{base_url}}{{pet_router}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "699e0ec04d8135860e2b74e9"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir pet",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"user_id\": \"699dcb9c075eb9c3f64a5785\",\r\n  \"name\": \"Rex\"\r\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}{{pet_router}}/:id",
+              "host": [
+                "{{base_url}}{{pet_router}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "699e0efa4d8135860e2b74f6"
+                }
+              ]
+            }
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Excluir usuário",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/users/:id",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "api",
-            "users",
-            ":id"
-          ],
-          "variable": [
-            {
-              "key": "id",
-              "value": "699dcd59075eb9c3f64a5796"
+      "name": "Users",
+      "item": [
+        {
+          "name": "Listar usuários (paginado)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{user_route}}?page=1&limit=2",
+              "host": [
+                "{{base_url}}{{user_route}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "2"
+                },
+                {
+                  "key": "role",
+                  "value": "admin",
+                  "disabled": true
+                },
+                {
+                  "key": "active",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
             }
-          ]
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar usuário por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{user_route}}/:id",
+              "host": [
+                "{{base_url}}{{user_route}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "699dcb9c075eb9c3f64a5785"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar novo usuário",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"João Silva\",\r\n  \"email\": \"joao@empresa.com\",\r\n  \"role\": \"editor\",\r\n  \"active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{user_route}}",
+              "host": [
+                "{{base_url}}{{user_route}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar usuário",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"João Silva New\",\r\n  \"email\": \"joao@empresa.com\",\r\n  \"role\": \"editor\",\r\n  \"active\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{user_route}}/:id",
+              "host": [
+                "{{base_url}}{{user_route}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "699dcd59075eb9c3f64a5796"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir usuário",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{user_route}}/:id",
+              "host": [
+                "{{base_url}}{{user_route}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "699dcd59075eb9c3f64a5796"
+                }
+              ]
+            }
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
       "name": "Health check",

@@ -11,9 +11,9 @@ crud-app/
 ├── backend/
 │   ├── src/
 │   │   ├── config/       # database.js
-│   │   ├── controllers/  # user.controller.js
-│   │   ├── models/       # user.model.js
-│   │   ├── routes/       # user.routes.js
+│   │   ├── controllers/  # user.controller.js, pet.controller.js
+│   │   ├── models/       # user.model.js, pet.model.js
+│   │   ├── routes/       # user.routes.js, pet.routes.js
 │   │   └── server.js
 │   ├── tests/
 │   │   └── user.controller.test.js
@@ -120,6 +120,8 @@ npm test
 
 ## 📡 API REST — Endpoints
 
+### Usuários
+
 | Método   | Endpoint           | Descrição                     |
 |----------|--------------------|-------------------------------|
 | `GET`    | `/api/users`       | Listar usuários (paginado)    |
@@ -129,7 +131,7 @@ npm test
 | `DELETE` | `/api/users/:id`   | Excluir usuário               |
 | `GET`    | `/health`          | Health check                  |
 
-### Query params para GET /api/users
+#### Query params — GET /api/users
 | Param    | Tipo    | Exemplo            |
 |----------|---------|--------------------|
 | `page`   | integer | `?page=1`          |
@@ -137,7 +139,7 @@ npm test
 | `role`   | string  | `?role=admin`      |
 | `active` | string  | `?active=true`     |
 
-### Exemplo de payload POST /api/users
+#### Payload — POST /api/users
 ```json
 {
   "name": "João Silva",
@@ -147,7 +149,7 @@ npm test
 }
 ```
 
-### Exemplo de resposta
+#### Resposta — GET /api/users/:id
 ```json
 {
   "id": "65f1a2b3c4d5e6f7a8b9c0d1",
@@ -157,6 +159,84 @@ npm test
   "active": true,
   "createdAt": "2024-03-13T10:00:00.000Z",
   "updatedAt": "2024-03-13T10:00:00.000Z"
+}
+```
+
+---
+
+### Pets
+
+| Método   | Endpoint                       | Descrição                           |
+|----------|--------------------------------|-------------------------------------|
+| `GET`    | `/api/pets`                    | Listar pets (paginado)              |
+| `GET`    | `/api/pets/user/:user_id`      | Listar pets de um usuário específico|
+| `GET`    | `/api/pets/:id`                | Buscar pet por ID                   |
+| `POST`   | `/api/pets`                    | Criar novo pet                      |
+| `PUT`    | `/api/pets/:id`                | Atualizar pet                       |
+| `DELETE` | `/api/pets/:id`                | Excluir pet                         |
+
+#### Query params — GET /api/pets
+| Param     | Tipo    | Exemplo                             |
+|-----------|---------|-------------------------------------|
+| `page`    | integer | `?page=1`                           |
+| `limit`   | integer | `?limit=10`                         |
+| `user_id` | string  | `?user_id=65f1a2b3c4d5e6f7a8b9c0d1` |
+
+#### Query params — GET /api/pets/user/:user_id
+| Param   | Tipo    | Exemplo     |
+|---------|---------|-------------|
+| `page`  | integer | `?page=1`   |
+| `limit` | integer | `?limit=10` |
+
+#### Exemplo — GET /api/pets/user/:user_id
+```
+GET /api/pets/user/65f1a2b3c4d5e6f7a8b9c0d1
+GET /api/pets/user/65f1a2b3c4d5e6f7a8b9c0d1?page=1&limit=5
+```
+
+#### Payload — POST /api/pets
+```json
+{
+  "user_id": "65f1a2b3c4d5e6f7a8b9c0d1",
+  "name": "Rex"
+}
+```
+
+#### Payload — PUT /api/pets/:id
+```json
+{
+  "name": "Max"
+}
+```
+
+#### Resposta — GET /api/pets e GET /api/pets/:id
+> O campo `user_id` é substituído por `user_name` (nome do dono) via populate.
+
+```json
+{
+  "id": "66a3c1e2d7f8b9e0a1b2c3d4",
+  "user_name": "João Silva",
+  "name": "Rex",
+  "createdAt": "2024-03-13T10:00:00.000Z",
+  "updatedAt": "2024-03-13T10:00:00.000Z"
+}
+```
+
+#### Resposta paginada — GET /api/pets
+```json
+{
+  "data": [
+    {
+      "id": "66a3c1e2d7f8b9e0a1b2c3d4",
+      "user_name": "João Silva",
+      "name": "Rex",
+      "createdAt": "2024-03-13T10:00:00.000Z",
+      "updatedAt": "2024-03-13T10:00:00.000Z"
+    }
+  ],
+  "total": 1,
+  "page": 1,
+  "pages": 1
 }
 ```
 

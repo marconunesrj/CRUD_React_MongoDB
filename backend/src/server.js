@@ -6,6 +6,7 @@ import sensible from '@fastify/sensible'
 
 import { connectDatabase } from './config/database.js'
 import { userRoutes } from './routes/user.routes.js'
+import { petRoutes } from './routes/pet.routes.js'
 
 const {
   PORT = 3001,
@@ -48,6 +49,7 @@ export async function buildApp() {
 
   // ── API routes ────────────────────────────────────────────────────────────
   app.register(userRoutes, { prefix: '/api/users' })
+  app.register(petRoutes, { prefix: '/api/pets' })
 
   // ── Global error handler ──────────────────────────────────────────────────
   app.setErrorHandler((error, _req, reply) => {
